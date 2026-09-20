@@ -18,7 +18,4 @@ COPY .env.example ./
 
 EXPOSE 8501
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-    CMD-SHELL python -c "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:' + os.environ.get('PORT', '8501') + '/_stcore/health')"
-
 CMD ["sh", "-c", "streamlit run src/ui.py --server.port ${PORT}"]
