@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: cold-chain-logistics
+    runtime: docker
+    region: singapore
+    plan: free
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: Agent_llm
+        value: OLLAMA
+      - key: Embeddings_model
+        value: LOCAL
