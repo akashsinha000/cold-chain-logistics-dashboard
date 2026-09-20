@@ -8,10 +8,6 @@ from dotenv import load_dotenv
 import streamlit as st
 import pandas as pd
 from sqlalchemy import create_engine, text
-try:
-    from langchain_core.messages import HumanMessage, ToolMessage
-except Exception:
-    from src.local_runtime import LocalMessage as HumanMessage, LocalToolMessage as ToolMessage
 
 # ==========================================
 # 1. IMMEDIATE PATH & ENVIRONMENT RESOLUTION
@@ -23,6 +19,11 @@ if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
 load_dotenv(project_root / ".env")
+
+try:
+    from langchain_core.messages import HumanMessage, ToolMessage
+except Exception:
+    from local_runtime import LocalMessage as HumanMessage, LocalToolMessage as ToolMessage
 
 # Import the compiled graph and tools list dynamically
 from src.orchestrator import fde_agent
